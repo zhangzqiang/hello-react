@@ -1,0 +1,29 @@
+{
+  "name": "react-demo",
+  "version": "1.0.0",
+  "description": "从零开始学习react框架，并搭建一个react+redux+antd+scss+webpack4+eslint+babel+mockjs开发平台",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhangzqiang/React-Demo.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "antd",
+    "scss",
+    "webpack4",
+    "eslint",
+    "babel",
+    "mockjs"
+  ],
+  "author": "zhang_z_qiang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zhangzqiang/React-Demo/issues"
+  },
+  "homepage": "https://github.com/zhangzqiang/React-Demo#readme"
+}
