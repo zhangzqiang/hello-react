@@ -1,2 +1,3 @@
 # React-Demo
-react+redux+antd+scss+webpack4+eslint+babel+mockjs
+
+* react+redux+antd+scss+webpack4+eslint+babel+mockjs
