@@ -5,19 +5,18 @@
     "dependencies": {
         "antd": "^3.6.5",
         "react": "^16.4.1",
-        "react-dom": "^16.4.1",
-        "react-scripts": "1.1.4"
+        "react-dom": "^16.4.1"
     },
     "scripts": {
         "start": "webpack-dev-server --config scripts/webpack.config.dev.js",
         "dev": "webpack --config scripts/webpack.config.dev.js",
         "build": "webpack --config scripts/webpack.config.prod.js",
-        "test": "react-scripts test --env=jsdom",
-        "eject": "react-scripts eject"
+        "test": "jest --config scripts/jest.config.js"
     },
     "devDependencies": {
         "babel-core": "^6.26.3",
         "babel-eslint": "^8.2.5",
+        "babel-jest": "^23.2.0",
         "babel-loader": "^7.1.4",
         "babel-plugin-import": "^1.8.0",
         "babel-preset-es2015": "^6.24.1",
@@ -32,6 +31,8 @@
         "eslint-plugin-react": "^7.10.0",
         "file-loader": "^1.1.11",
         "html-webpack-plugin": "^3.2.0",
+        "jest": "^23.3.0",
+        "jest-cli": "21.2.1",
         "less": "^3.5.0",
         "less-loader": "^4.1.0",
         "mini-css-extract-plugin": "^0.4.1",
@@ -41,11 +42,5 @@
         "webpack": "^4.15.0",
         "webpack-cli": "^3.0.8",
         "webpack-dev-server": "^3.1.4"
-    },
-    "babel": {
-        "presets": [
-            "env",
-            "react-app"
-        ]
     }
 }

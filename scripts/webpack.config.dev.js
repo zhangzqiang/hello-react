@@ -35,7 +35,11 @@ module.exports = {
         filename: 'main.js?[hash]',
         path: path.resolve(__dirname, '../dist'),
     },
-    plugins: [htmlPlugin,cssPlugin],
+    plugins: [htmlPlugin, cssPlugin],
+    // 指定第三方库目录，减少webpack寻找时间
+    resolve: { 
+        modules: [path.resolve(__dirname, '../node_modules')],
+    },
     module: {
         //webpack默认只能打包处理.js后缀的文件，像.jpg .vue等文件无法主动处理，所以需要配置第三方loader
         rules: [

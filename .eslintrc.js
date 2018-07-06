@@ -1,0 +1,41 @@
+module.exports = {
+    parser: 'babel-eslint',
+    env: {
+      browser: true,
+      node: true,
+      es6: true,
+      jest: true,
+    },
+    plugins: ['react'],
+    extends: ['plugin:react/recommended'],
+    rules: {
+      quotes: [1, 'single'],
+      semi: [2, 'always'],
+      'no-undef':2,
+      'no-param-reassign': 0,
+      'no-constant-condition': 2,
+      'no-unused-vars': 2,
+      'no-console': 1,
+      'no-use-before-define': 2,
+      'no-trailing-spaces': [1, {skipBlankLines: true}],
+      'linebreak-style': [2, 'unix'],
+      'arrow-body-style': [2, 'as-needed'],
+      'comma-dangle': [2, 'always-multiline'],
+      'global-require': [1],
+      'prefer-template': 2,
+      'react/prop-types': 0,
+      'react/jsx-first-prop-new-line': [2, 'multiline'],
+      'react/jsx-filename-extension': [1, {extensions: ['.js']}],
+    },
+    parserOptions: {
+      ecmaVersion: 6,
+      sourceType: 'module',
+      ecmaFeatures: {
+        experimentalObjectRestSpread: true,
+        jsx: true,
+      },
+    },
+    settings: {
+      polyfills: ['fetch', 'promises'],
+    },
+  };
