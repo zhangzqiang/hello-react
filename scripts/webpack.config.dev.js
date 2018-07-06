@@ -35,7 +35,7 @@ module.exports = {
         filename: 'main.js?[hash]',
         path: path.resolve(__dirname, '../dist'),
     },
-    plugins: [htmlPlugin, cssPlugin],
+    plugins: [htmlPlugin,cssPlugin],
     module: {
         //webpack默认只能打包处理.js后缀的文件，像.jpg .vue等文件无法主动处理，所以需要配置第三方loader
         rules: [
@@ -48,7 +48,7 @@ module.exports = {
             },
             // 解析css文件
             {
-                test: /\(.css|less|sass|scss)$/,
+                test: /\.(css|less|sass|scss)$/,
                 // use从右往左写
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader', 'sass-loader'],
             },
@@ -69,7 +69,10 @@ module.exports = {
         ],
     },
     devServer: {
-        port: 3000, //如果省略，默认8080
+        //自动打开默认浏览器
+        //open: true,
+        //如果省略，默认8080
+        port: 3000,
         //默认会以根文件夹提供本地服务器，这里指定文件夹
         contentBase: path.resolve(__dirname, '../dist'),
         publicPath: "/",
