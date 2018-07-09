@@ -1,5 +1,17 @@
+# dependencies
 *node_modules
+
+# debug
 *chrome
+
+# testing
+/test/coverage
+
+# production
+/dist
+
+# misc
+.DS_Store
 package-lock.json
 yarn.lock
 yarn-error.log
