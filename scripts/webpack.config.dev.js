@@ -3,7 +3,12 @@ const HtmlWebpackPlugin = require ('html-webpack-plugin');
 const MiniCssExtractPlugin = require ('mini-css-extract-plugin');
 const CleanWebpackPlugin = require ('clean-webpack-plugin');
 const apiMocker = require ('webpack-api-mocker');
-const pkg = require ('../package.json');
+const pkg = require('../package.json');
+const environment = 'development';
+
+
+process.env.BABEL_ENV = environment;
+process.env.NODE_ENV = environment;
 
 //创建一个HtmlWebpackPlugin插件实例
 const htmlPlugin = new HtmlWebpackPlugin ({
@@ -30,10 +35,6 @@ const cleanPlugin = new CleanWebpackPlugin (['dist'], {
   verbose: true,
   dry: false,
 });
-
-const environment = 'development';
-process.env.BABEL_ENV = environment;
-process.env.NODE_ENV = environment;
 
 //向外暴露一个配置对象，commonjs规范（因为webpack是基于node构建）
 //在webpack4中有一大特性是约定大于配置，默认打包入口路径是'src/index.js'，打包输出路径是'dist/main.js'
