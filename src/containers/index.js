@@ -5,8 +5,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import {connect} from 'react-redux';
-import {LocaleProvider} from 'antd';
+import {connect} from 'react-redux';import {LocaleProvider} from 'antd';
 
 import {getStorage} from '../utils/storage';
 import {USER_ID, TOKEN} from '../constants/common';
@@ -41,7 +40,6 @@ class App extends React.Component {
 
   handleRender = () => {
     const {location, state} = this.props;
-    console.log (state);
     if (state.isAuthenticated) {
       return <Home />;
     } else {

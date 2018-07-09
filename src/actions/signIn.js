@@ -1,4 +1,8 @@
-import {SIGIN, SIGIN_LOADING} from '../constants/actionTypes';
+import {SIGIN, SIGIN_LOADING, AUTH_ERROR} from '../constants/actionTypes';
+import {ERRORMESSAGE} from '../constants/common';
+import {URL_SIGNIN} from '../constants/service';
+// import {setStorage, removeStorage} from '../utils/storage';
+import ajax from '../utils/ajax';
 
 /*
 {
@@ -43,13 +47,30 @@ let signInResult = result => ({
   loading: false,
 });
 
-const signIn = user => {
+
+const signIn =  user => {
   let result = false;
-  if (user.name === 'admin' && user.password == '123qwe') {
-    result = true;
-  }
-  return dispatch => {
-    dispatch (signInResult (result));
+
+  return async dispatch => {
+    try {
+      const res = await ajax.post(URL_SIGNIN, user);
+      console.log (res);
+      if (res.status === 200 && res.data.code === 100) {
+        console.log (res);
+        return dispatch (signInResult (result));
+      }
+    } catch (err) {
+      let errorMessage = ERRORMESSAGE;
+      console.log (err);
+      if (err.response.status === 404 && err.response.data.code === -1001) {
+        errorMessage = err.response.data.message;
+      }
+			
+      return {
+        type: AUTH_ERROR,
+        payload: errorMessage,
+      };
+    }
   };
 };
 

@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require ('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require ('clean-webpack-plugin');
 const pkg = require('../package.json');
-const environment = 'development';
+const environment = 'production';
 
 process.env.BABEL_ENV = environment;
 process.env.NODE_ENV = environment;

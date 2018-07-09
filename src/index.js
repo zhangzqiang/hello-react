@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import registerServiceWorker from './registerServiceWorker';
-import {Provider} from 'react-redux';
-
 import configureStore from './store';
 import App from './containers';
 
 const store = configureStore ();
 
+//根节点
 ReactDOM.render (
   <Provider store={store}>
       <App />
@@ -15,4 +15,7 @@ ReactDOM.render (
   document.getElementById ('root')
 );
 
-registerServiceWorker ();
+//devServer注册服务
+if (process.env.NODE_ENV === 'development') {
+  registerServiceWorker();
+}

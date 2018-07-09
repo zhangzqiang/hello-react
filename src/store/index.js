@@ -1,17 +1,24 @@
 import {createStore, applyMiddleware, compose} from 'redux';
-import thunk from 'redux-thunk';
+import thunkMiddleware from 'redux-thunk';
 import {createLogger} from 'redux-logger';
 import rootReducer from '../reducers';
 
-let configureStore = preloadedState =>
-  createStore (rootReducer, preloadedState, applyMiddleware (thunk));
+let configureStore = initialState =>
+  createStore (rootReducer, initialState, applyMiddleware (thunkMiddleware));
 
 if (process.env.NODE_ENV === 'development') {
-  configureStore = preloadedState => {
+  const loggerMiddleware = createLogger ();
+  //当使用异步加载的时候需要加入插件thunk,插件需要传入applyMiddleWare方法，
+  //如果这个时候还加入了devtool插件，applyMiddleWare(thunk)必须要放在devtool()的前面，否则会报错。
+  //Actions must be plain objects. Use custom middleware for async actions.
+  configureStore = initialState => {
     const store = createStore (
       rootReducer,
-      preloadedState,
-      compose (applyMiddleware (thunk, createLogger ()))
+      initialState,
+      compose (
+        applyMiddleware (thunkMiddleware, loggerMiddleware),
+        window.devToolsExtension ? window.devToolsExtension () : f => f
+      )
     );
 
     // Enable Webpack hot module replacement for reducers
@@ -20,8 +27,6 @@ if (process.env.NODE_ENV === 'development') {
         store.replaceReducer (rootReducer);
       });
     }
-
-    console.log (store.getState ());
 
     return store;
   };
