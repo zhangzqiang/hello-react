@@ -24,6 +24,7 @@ const cssPlugin = new MiniCssExtractPlugin ({
   filename: 'main.css?[hash]',
 });
 
+//创建一个CleanWebpackPlugin插件实例
 const cleanPlugin = new CleanWebpackPlugin (['dist'], {
   root: path.join (__dirname, '../'),
   verbose: true,

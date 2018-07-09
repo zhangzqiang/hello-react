@@ -1,6 +1,7 @@
 const path = require ('path');
 const HtmlWebpackPlugin = require ('html-webpack-plugin');
-const MiniCssExtractPlugin = require ('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CleanWebpackPlugin = require ('clean-webpack-plugin');
 const pkg = require('../package.json');
 
 //创建一个HtmlWebpackPlugin插件实例
@@ -22,6 +23,13 @@ const cssPlugin = new MiniCssExtractPlugin ({
   filename: 'main.css',
 });
 
+//创建一个CleanWebpackPlugin插件实例
+const cleanPlugin = new CleanWebpackPlugin (['dist'], {
+  root: path.join (__dirname, '../'),
+  verbose: true,
+  dry: false,
+});
+
 const environment = 'production';
 process.env.BABEL_ENV = environment;
 process.env.NODE_ENV = environment;
@@ -40,7 +48,7 @@ module.exports = {
   resolve: {
     modules: [path.resolve (__dirname, '../node_modules')],
   },
-  plugins: [htmlPlugin, cssPlugin],
+  plugins: [cleanPlugin,htmlPlugin, cssPlugin],
   module: {
     //webpack默认只能打包处理.js后缀的文件，像.jpg .vue等文件无法主动处理，所以需要配置第三方loader
     rules: [
