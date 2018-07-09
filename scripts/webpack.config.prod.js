@@ -10,7 +10,7 @@ const htmlPlugin = new HtmlWebpackPlugin ({
   //模板文件
   template: path.join (__dirname, '../public/index.html'),
   //生成文件名
-  filename: pkg.main,
+  filename:  'index.html',
   favicon: path.join (__dirname, '../public/favicon.ico'),
   minify: {
     // 移除属性的引号
