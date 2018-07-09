@@ -36,7 +36,7 @@ module.exports = {
         path: path.resolve(__dirname, '../dist'),
     },
     // 指定第三方库目录，减少webpack寻找时间
-    resolve: { 
+    resolve: {
         modules: [path.resolve(__dirname, '../node_modules')],
     },
     plugins: [htmlPlugin,cssPlugin],
@@ -68,8 +68,8 @@ module.exports = {
                         outputPath: 'images/',
                         name: '[name].[ext]?[hash]',
                     },
-                }, ],
+                } ],
             },
         ],
-    }
+    },
 };

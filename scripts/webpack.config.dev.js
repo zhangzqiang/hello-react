@@ -37,7 +37,7 @@ module.exports = {
     },
     plugins: [htmlPlugin, cssPlugin],
     // 指定第三方库目录，减少webpack寻找时间
-    resolve: { 
+    resolve: {
         modules: [path.resolve(__dirname, '../node_modules')],
     },
     module: {
@@ -68,7 +68,7 @@ module.exports = {
                         outputPath: 'images/',
                         name: '[name].[ext]?[hash]',
                     },
-                }, ],
+                } ],
             },
         ],
     },
@@ -79,7 +79,7 @@ module.exports = {
         port: 3000,
         //默认会以根文件夹提供本地服务器，这里指定文件夹
         contentBase: path.resolve(__dirname, '../dist'),
-        publicPath: "/",
+        publicPath: '/',
         historyApiFallback: {
             // Paths with dots should still use the history fallback.
             // See https://github.com/facebookincubator/create-react-app/issues/387.
