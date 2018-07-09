@@ -26,7 +26,7 @@ class SignIn extends React.Component {
     };
   }
 
-  componentWillMount () {
+  componentDidMount () {
     let {location} = this.props;
     if (location.state) {
       message.warning (location.state.message);

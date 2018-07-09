@@ -20,7 +20,8 @@
     "dev": "webpack --config scripts/webpack.config.dev.js",
     "build": "webpack --config scripts/webpack.config.prod.js",
     "test": "jest --config scripts/jest.config.js",
-    "debug": "node --inspect-brk node_modules/.bin/webpack --config scripts/webpack.config.dev.js"
+    "debug": "node --inspect-brk node_modules/.bin/webpack --config scripts/webpack.config.dev.js",
+    "lint": "eslint --fix --ext .js src"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -47,6 +48,7 @@
     "less": "^3.5.0",
     "less-loader": "^4.1.0",
     "mini-css-extract-plugin": "^0.4.1",
+    "mockjs": "^1.0.1-beta3",
     "node-sass": "^4.9.1",
     "redux-logger": "^3.0.6",
     "sass-loader": "^7.0.3",

@@ -8,7 +8,7 @@ import {USER_ID, TOKEN} from '../constants/common';
   state: state.userReducer,
 }))
 class RouteChecker extends React.Component {
-  componentWillMount () {
+  componentDidMount () {
     const userId = getStorage (USER_ID);
     const token = getStorage (TOKEN);
 

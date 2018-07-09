@@ -110,7 +110,7 @@ module.exports = {
     before (app) {
       apiMocker (
         app,
-        path.resolve ('./mocker/index.js') //生成模拟数据
+        path.resolve (__dirname, '../src/mocker/index.js') //生成模拟数据
       );
     },
   },
