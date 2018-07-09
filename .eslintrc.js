@@ -21,7 +21,7 @@ module.exports = {
       'linebreak-style': [2, 'unix'],
       'arrow-body-style': [2, 'as-needed'],
       'comma-dangle': [2, 'always-multiline'],
-      'global-require': [1],
+      'global-require': [0],
       'prefer-template': 2,
       'react/prop-types': 0,
       'react/jsx-first-prop-new-line': [2, 'multiline'],

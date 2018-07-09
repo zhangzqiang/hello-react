@@ -1,0 +1,10 @@
+//解决[ts] 对修饰器的实验支持是一项将在将来版本中更改的功能。设置 "experimentalDecorators" 选项以删除此警告。
+{
+	"compilerOptions": {
+		"experimentalDecorators": true
+	},
+	"exclude": [
+		"node_modules",
+		"build"
+	],
+}
