@@ -53,14 +53,12 @@ const signIn = user => {
       
       if (res.status === 200) {
         if (res.data.resultCode === 10000) {
-          debugger;
           return dispatch ({
             type: SIGIN_SUCCESS,
             success: true,
             loading: false,
           });
         } else {
-          debugger;
           return dispatch ({
             type: SIGIN_SUCCESS,
             success: false,

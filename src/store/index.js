@@ -9,8 +9,7 @@ let configureStore = initialState =>
 if (process.env.NODE_ENV === 'development') {
   const loggerMiddleware = createLogger ();
   //当使用异步加载的时候需要加入插件thunk,插件需要传入applyMiddleWare方法，
-  //如果这个时候还加入了devtool插件，applyMiddleWare(thunk)必须要放在devtool()的前面，否则会报错。
-  //Actions must be plain objects. Use custom middleware for async actions.
+  //如果这个时候还加入了devtool插件，applyMiddleWare(thunk)必须要放在devtool()的前面，否则会报[Actions must be plain objects. Use custom middleware for async actions.]错误
   configureStore = initialState => {
     const store = createStore (
       rootReducer,
@@ -21,7 +20,7 @@ if (process.env.NODE_ENV === 'development') {
       )
     );
 
-    // Enable Webpack hot module replacement for reducers
+    // 在调试状态下，如果开启热更新，则需要对reducers进行强制处理
     if (module.hot) {
       module.hot.accept ('../reducers', () => {
         store.replaceReducer (rootReducer);

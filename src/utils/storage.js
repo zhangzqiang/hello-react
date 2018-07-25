@@ -1,4 +1,4 @@
-const setStorage = (name, content) => {
+const set = (name, content) => {
   if (!name) return;
   if (typeof content !== 'string') {
     content = JSON.stringify (content);
@@ -6,14 +6,14 @@ const setStorage = (name, content) => {
   window.localStorage.setItem (name, content);
 };
 
-const getStorage = name => {
+const get = name => {
   if (!name) return;
   return window.localStorage.getItem (name);
 };
 
-const removeStorage = name => {
+const remove = name => {
   if (!name) return;
   return window.localStorage.removeItem (name);
 };
 
-export {setStorage, getStorage, removeStorage};
+export default {set, get, remove};

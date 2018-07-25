@@ -1,9 +1,9 @@
 const path = require ('path');
+const webpack = require ('webpack');
 const HtmlWebpackPlugin = require ('html-webpack-plugin');
 const MiniCssExtractPlugin = require ('mini-css-extract-plugin');
-const CleanWebpackPlugin = require ('clean-webpack-plugin');
 const apiMocker = require ('webpack-api-mocker');
-const pkg = require('../package.json');
+const pkg = require ('../package.json');
 const environment = 'development';
 
 process.env.BABEL_ENV = environment;
@@ -28,24 +28,23 @@ const cssPlugin = new MiniCssExtractPlugin ({
   filename: 'main.css?[hash]',
 });
 
-//创建一个CleanWebpackPlugin插件实例
-const cleanPlugin = new CleanWebpackPlugin (['dist'], {
-  root: path.join (__dirname, '../'),
-  verbose: true,
-  dry: false,
-});
 
 //向外暴露一个配置对象，commonjs规范（因为webpack是基于node构建）
 //在webpack4中有一大特性是约定大于配置，默认打包入口路径是'src/index.js'，打包输出路径是'dist/main.js'
 module.exports = {
-  entry: ['babel-polyfill', './src/index.js'],
   mode: environment, //development|production ( 生产环境会将代码压缩 )
   output: {
     //配置文件输出路径
     filename: 'main.js?[hash]',
     path: path.resolve (__dirname, '../dist'),
+    publicPath: 'http://localhost:3000/',
   },
-  plugins: [cleanPlugin, htmlPlugin, cssPlugin],
+  plugins: [
+    new webpack.SourceMapDevToolPlugin (),
+    new webpack.HotModuleReplacementPlugin(),
+    htmlPlugin,
+    cssPlugin,
+  ],
   // 指定第三方库目录，减少webpack寻找时间
   resolve: {
     modules: [path.resolve (__dirname, '../node_modules')],
@@ -109,7 +108,7 @@ module.exports = {
       },
     },
     //默认会以根文件夹提供本地服务器，这里指定文件夹
-    contentBase: path.resolve (__dirname, '../dist'),
+    //contentBase: path.resolve (__dirname, '../dist'),
     publicPath: '/',
     historyApiFallback: {
       // Paths with dots should still use the history fallback.
@@ -121,7 +120,7 @@ module.exports = {
       if (pkg.mocker) {
         apiMocker (
           app,
-          path.resolve (__dirname, '../src/mocker/index.js') //生成模拟数据
+          path.resolve (__dirname, '../mocker/index.js') //生成模拟数据
         );
       }
     },

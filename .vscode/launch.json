@@ -2,13 +2,19 @@
     // 使用 IntelliSense 了解相关属性。 
     // 悬停以查看现有属性的描述。
     // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    // Windows
+    // --Right click the Chrome shortcut, and select properties In the "target" field, append --remote-debugging-port=9222 Or in a command prompt, execute /chrome.exe --remote-debugging-port=9222
+    // OS X
+    // --In a terminal, execute /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222
+    // Linux
+    // --In a terminal, launch google-chrome --remote-debugging-port=9222
     "version": "0.2.0",
     "configurations": [
         {
             "name": "Chrome",
             "type": "chrome",
             "request": "launch",
-            "url": "http://localhost:3000",
+            "url": "http://localhost:3000/",
             "webRoot": "${workspaceRoot}/src",
             "userDataDir": "${workspaceRoot}/.vscode/chrome",
             "sourceMapPathOverrides": {

@@ -1,11 +1,11 @@
 import axios from 'axios';
-import {getStorage} from './storage';
+import storage from './storage';
 import {TIMEOUT, USERID, TOKEN} from '../constants/common';
 
 //验证权限
 const authorization = () => {
-  let userId = getStorage (USERID);
-  let token = getStorage (TOKEN);
+  let userId = storage.get (USERID);
+  let token = storage.get (TOKEN);
   if (userId && token) {
     return `${userId}_${token}`;
   }

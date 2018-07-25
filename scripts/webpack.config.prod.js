@@ -40,7 +40,7 @@ const cleanPlugin = new CleanWebpackPlugin (['dist'], {
 //向外暴露一个配置对象，commonjs规范（因为webpack是基于node构建）
 //在webpack4中有一大特性是约定大于配置，默认打包入口路径是'src/index.js'，打包输出路径是'dist/main.js'
 module.exports = {
-  // entry:['./src/index.js'],
+  entry: ['babel-polyfill', './src/index.js'],
   mode: environment, //development|production ( 生产环境会将代码压缩 )
   output: {
     //配置文件输出路径
