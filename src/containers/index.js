@@ -6,12 +6,25 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
+import {IntlProvider} from 'react-intl';
 
+import locales from '../utils/locales';
 import storage from '../utils/storage';
 import {AUTH_ID} from '../constants/common';
 import SignIn from './signIn';
 import Home from './home';
 import '../assets/styles/index.scss';
+
+const getCurrentAppLocale = () => {
+  const language = storage.get ('language_key');
+  switch (language) {
+    case 'zh-CN':
+      return locales.zhCN;
+    default:
+      return locales.enUS;
+  }
+};
+window.appLocale = getCurrentAppLocale ();
 
 @connect (state => ({
   state: state.signInReducer,
@@ -66,12 +79,18 @@ class App extends React.Component {
     //LocaleProvider antd多语言支持组件
     //Route，exact的值为bool型，默认为true，为true是表示严格匹配(’/link’与’/’是不匹配的)，为false时为正常匹配。
     return (
+      <IntlProvider
+        locale={window.appLocale.locale}
+        messages={window.appLocale.messages}
+        formats={window.appLocale.formats}
+      >
         <Router>
           <Switch>
             <Route path="/signin" component={SignIn} />
             <Route exract render={this.handleRender} />
           </Switch>
         </Router>
+      </IntlProvider>
     );
   }
 }
