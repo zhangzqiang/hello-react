@@ -4,6 +4,7 @@
   "main": "index.js",
   "repository": "https://github.com/zhangzqiang/hello-react.git",
   "license": "MIT",
+  "mocker":true,
   "dependencies": {
     "antd": "^3.6.5",
     "autoprefixer": "^8.6.5",

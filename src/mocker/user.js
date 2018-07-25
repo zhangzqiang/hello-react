@@ -1,17 +1,17 @@
 module.exports = {
-  'POST /api/login/account': (req, res) => {
-    const {password, name} = req.body;
-    if (name === 'admin' && password === '888888') {
+  'POST /api/login': (req, res) => {
+    const {password, userName} = req.body;
+    if (userName === 'admin' && password === '123456') {
       return res.send ({
-        status: 'ok',
-        code: 200,
-        token: 'sdfsdfsdfdsf',
-        data: {id: 1, name: 'kenny', sex: 6},
+        resultCode: 10000,
+        msg: 'success',
+        result: {userName: 'wsh', password: '123456'},
       });
     } else {
       return res.send ({
-        status: 'error',
-        code: 403,
+        resultCode: 10002,
+        msg: 'error',
+        result: '用户名或密码错误',
       });
     }
   },

@@ -1,18 +1,20 @@
-import {SIGIN, SIGIN_LOADING} from '../constants/actionTypes';
+import {SIGIN_SUCCESS, SIGIN_LOADING} from '../constants/actionTypes';
 
 const initialState = {
-    isSuccess: false,
-    isRemenber: true,
-    showLoading: false,
-  };
+  isSuccess: false,
+  isRemenber: true,
+  showLoading: false,
+  message: '',
+};
 
 function signInReducer (state = initialState, action) {
   let newState = state;
   switch (action.type) {
-    case SIGIN:
+    case SIGIN_SUCCESS:
       newState = Object.assign ({}, state, {
-        showLoading: false,
+        showLoading: action.loading,
         isSuccess: action.success,
+        message: action.message,
       });
       break;
     case SIGIN_LOADING:

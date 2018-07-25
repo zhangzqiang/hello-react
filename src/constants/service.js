@@ -1,4 +1,4 @@
-import {API_URL} from './common';
+import { SERVER_URL} from './common';
 
 //登录页面
-export const URL_SIGNIN = `${API_URL}/api/login/account`;
+export const URL_SIGNIN = `${SERVER_URL}/api/login`;

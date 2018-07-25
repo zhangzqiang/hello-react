@@ -1,4 +1,6 @@
-const path = require ('path');
+//解决浏览器不支持Promise
+require ('babel-polyfill');
+const path = require('path');
 const HtmlWebpackPlugin = require ('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require ('clean-webpack-plugin');

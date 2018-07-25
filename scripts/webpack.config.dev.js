@@ -1,13 +1,10 @@
-//解决浏览器不支持Promise
-require('babel-polyfill');
-const path = require('path');
+const path = require ('path');
 const HtmlWebpackPlugin = require ('html-webpack-plugin');
 const MiniCssExtractPlugin = require ('mini-css-extract-plugin');
 const CleanWebpackPlugin = require ('clean-webpack-plugin');
 const apiMocker = require ('webpack-api-mocker');
 const pkg = require('../package.json');
 const environment = 'development';
-
 
 process.env.BABEL_ENV = environment;
 process.env.NODE_ENV = environment;
@@ -41,7 +38,7 @@ const cleanPlugin = new CleanWebpackPlugin (['dist'], {
 //向外暴露一个配置对象，commonjs规范（因为webpack是基于node构建）
 //在webpack4中有一大特性是约定大于配置，默认打包入口路径是'src/index.js'，打包输出路径是'dist/main.js'
 module.exports = {
-  entry:['babel-polyfill','./src/index.js'],
+  entry: ['babel-polyfill', './src/index.js'],
   mode: environment, //development|production ( 生产环境会将代码压缩 )
   output: {
     //配置文件输出路径
@@ -101,6 +98,16 @@ module.exports = {
     //open: true,
     //如果省略，默认8080
     port: 3000,
+    //通过代理，解决跨域问题
+    proxy: {
+      // 请求到 '/api' 下 的请求都会被代理到 target： http://192.168.14.119:14211 中
+      '/api': {
+        target: 'http://192.168.14.119:14211',
+        // 接受 运行在 https 上的服务
+        secure: false,
+        changeOrigin: true,
+      },
+    },
     //默认会以根文件夹提供本地服务器，这里指定文件夹
     contentBase: path.resolve (__dirname, '../dist'),
     publicPath: '/',
@@ -111,10 +118,12 @@ module.exports = {
     },
     //利用webpack-dev-server 的before 方法调用webpack-api-mocker
     before (app) {
-      apiMocker (
-        app,
-        path.resolve (__dirname, '../src/mocker/index.js') //生成模拟数据
-      );
+      if (pkg.mocker) {
+        apiMocker (
+          app,
+          path.resolve (__dirname, '../src/mocker/index.js') //生成模拟数据
+        );
+      }
     },
   },
 };

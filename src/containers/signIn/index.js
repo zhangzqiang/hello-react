@@ -1,16 +1,16 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {message} from 'antd';
+import { message as toast } from 'antd';
 
-import {getStorage} from '../../utils/storage';
+import {setStorage,getStorage, removeStorage} from '../../utils/storage';
 import {
   USERNAME,
   PASSWORD,
   WEBSITE_NAME,
   COPYRIGHT,
 } from '../../constants/common';
-// import {signInAction} from '../../actions';
+
 import logo from '../../assets/images/logo.png';
 import LoginForm from './loginForm';
 
@@ -29,7 +29,7 @@ class SignIn extends React.Component {
   componentDidMount () {
     let {location} = this.props;
     if (location.state) {
-      message.warning (location.state.message);
+      toast.warning (location.state.message);
     }
 
     const username = getStorage (USERNAME);
@@ -40,6 +40,34 @@ class SignIn extends React.Component {
       password,
     });
   }
+
+  handleSubmit = e => {
+    e.preventDefault ();
+    this.props.form.validateFields (async (err, values) => {
+      if (!err) {
+        await this.props.signIn ({
+          userName: values.username,
+          password: values.password,
+        });
+
+        let {isSuccess, message} = this.props.state;
+
+        if (isSuccess) {
+          toast.success ('登陆成功');
+        } else {
+          toast.error (message);
+        }
+
+        if (values.remember === true) {
+          setStorage (USERNAME, values.username);
+          setStorage (PASSWORD, values.password);
+        } else {
+          removeStorage (USERNAME, values.username);
+          removeStorage (PASSWORD, values.password);
+        }
+      }
+    });
+  };
 
   render () {
     const {state} = this.props;
@@ -61,7 +89,7 @@ class SignIn extends React.Component {
                 {WEBSITE_NAME}
               </h2>
             </div>
-            <LoginForm />
+            <LoginForm onSubmit={this.handleSubmit} />
             <p>
               &copy; {COPYRIGHT}
             </p>
