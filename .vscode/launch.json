@@ -14,11 +14,12 @@
             "name": "Chrome",
             "type": "chrome",
             "request": "launch",
-            "url": "http://localhost:3000/",
-            "webRoot": "${workspaceRoot}/src",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceRoot}",
             "userDataDir": "${workspaceRoot}/.vscode/chrome",
+            "sourceMaps": true,
             "sourceMapPathOverrides": {
-                "webpack:///src/*": "${webRoot}/*"
+                "webpack:///./*": "${webRoot}/*"
             }
         }
     ]

@@ -28,7 +28,6 @@ const cssPlugin = new MiniCssExtractPlugin ({
   filename: 'main.css?[hash]',
 });
 
-
 //向外暴露一个配置对象，commonjs规范（因为webpack是基于node构建）
 //在webpack4中有一大特性是约定大于配置，默认打包入口路径是'src/index.js'，打包输出路径是'dist/main.js'
 module.exports = {
@@ -39,9 +38,9 @@ module.exports = {
     path: path.resolve (__dirname, '../dist'),
     publicPath: 'http://localhost:3000/',
   },
+  devtool: 'source-map',
   plugins: [
-    new webpack.SourceMapDevToolPlugin (),
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin (),
     htmlPlugin,
     cssPlugin,
   ],
@@ -67,12 +66,12 @@ module.exports = {
       // 解析less
       {
         test: /\.(less)$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader?sourceMap', 'less-loader?sourceMap'],
       },
       //解析sass/scss
       {
         test: /\.(sass|scss)$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader?sourceMap', 'sass-loader?sourceMap'],
       },
       //解析图片文件
       {

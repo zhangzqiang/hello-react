@@ -32,9 +32,7 @@ window.appLocale = getCurrentAppLocale ();
 class App extends React.Component {
   constructor () {
     super ();
-    // const language = `antd/lib/locale-provider/${LANGUAGE}.js`;
     this.state = {
-      // locale: require (language),
       isAuthenticated: false,
     };
   }
